@@ -20,7 +20,15 @@
     <%= form.label :last_name %>
     <%= form.text_field :last_name %>
   </div>
-
+  
+  <%= form.fields_for :user do |field|%>
+    <%= field.label "Email" %>
+    <%= field.text_field :email %>
+    
+    <%= field.label "Password" %>
+    <%= field.password_field :password %>
+  <% end %>
+  
   <div class="field">
     <%= form.label :ssn %>
     <%= form.text_field :ssn %>
