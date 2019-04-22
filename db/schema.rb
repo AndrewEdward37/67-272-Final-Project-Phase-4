@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_215143) do
+ActiveRecord::Schema.define(version: 2019_04_22_192215) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer "store_id"
@@ -49,12 +49,26 @@ ActiveRecord::Schema.define(version: 2019_04_20_215143) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shift_jobs", force: :cascade do |t|
+    t.integer "shift_id"
+    t.integer "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "shifts", force: :cascade do |t|
     t.integer "assignment_id"
     t.date "date"
     t.time "start_time"
     t.time "end_time"
     t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "store_flavors", force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "flavor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,6 +81,14 @@ ActiveRecord::Schema.define(version: 2019_04_20_215143) do
     t.string "zip"
     t.string "phone"
     t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "employee_id"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
