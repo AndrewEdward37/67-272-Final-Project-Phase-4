@@ -1,0 +1,2 @@
+class ShiftJob < ApplicationRecord
+end

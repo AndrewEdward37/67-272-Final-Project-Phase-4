@@ -1,0 +1,47 @@
+$table-striped-color: #cfd8dc;
+$primary-color: #ff1744;
+$button-height: 26px;
+@import "materialize";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+#toast-container {
+    left: 1%;
+    right: auto !important;
+}
+
+.xd_links {
+    background-color: #ff1744;
+}
+.am_text {
+    color: #ff1744;
+}
+
+.picker__date-display { background-color: #ff1744; }
+.picker__day--today { color: #ff1744; }
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected { background-color: #ff1744;}
+.picker__close { color: #ff1744 !important;}
+.picker__today { color: #ff1744 !important;}
+.clockpicker-tick:hover { background: #ff1744 !important; }
+.clockpicker-canvas line { stroke: #ff1744 !important; }
+.clockpicker-canvas-bearing { fill: #ff1744 !important; }
+.clockpicker-canvas-bg { fill: #ff1744 !important; }
+
+/* label color */
+   .input-field label {
+     color: black;
+   }
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #ff1744;
+   }
+   
+   /* label underline focus color */
+   .input-field input[type=text] {
+     border-bottom: 1px solid #ff1744;
+     box-shadow: 0 1px 0 0 #ff1744;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #ff1744;
+     box-shadow: 0 1px 0 0 #ff1744;
+   }

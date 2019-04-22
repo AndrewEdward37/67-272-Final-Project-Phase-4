@@ -1,0 +1,2 @@
+class StoreFlavor < ApplicationRecord
+end
