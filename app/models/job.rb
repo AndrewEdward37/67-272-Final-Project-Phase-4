@@ -13,8 +13,25 @@ class Job < ApplicationRecord
 
 #-------------------------------------------------------------------------------    
 #Scopes
-
+    scope :active, -> {where('active = ?', true)}
+    scope :inactive, -> {where('active = ?', false)}
+    scope :alphabetical, -> {order(:name)}
+    
+#-------------------------------------------------------------------------------    
+#Methods
 
 #-------------------------------------------------------------------------------    
-#Privat methods for any callbacks
+#Private methods for any callbacks
+    before_destroy :destroyable?
+    after_rollback :convert_inactive
+    private
+    def destroyable?
+        @destroyable = self.shift_jobs.empty?
+    end
+    
+    def convert_inactive
+        self.update_attribute(:active, false) if !@destroyable.nil? && @destroyable == false
+        @destroyable = nil
+    end
+    
 end
