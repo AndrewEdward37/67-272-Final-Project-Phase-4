@@ -13,11 +13,25 @@ class Flavor < ApplicationRecord
   
 #-------------------------------------------------------------------------------    
 #Scopes
-
+  scope :active, -> {where('active = ?', true)}
+  scope :inactive, -> {where('active = ?', false)}
+  scope :alphabetical, -> {order(:name)}
 #-------------------------------------------------------------------------------    
 #Methods
 
 #-------------------------------------------------------------------------------    
-#Privatemethods for any callbacks
+#Private methods for any callbacks
+    before_destroy :destroyable?
+    after_rollback :make_inactive
+    
+    private
+    def destroyable?
+        @destroyable = false
+    end
+    
+    def make_inactive
+        self.update_attribute(:active, false) if !@destroyable.nil? && @destroyable == false
+        @destroyable = nil
+    end
   
 end

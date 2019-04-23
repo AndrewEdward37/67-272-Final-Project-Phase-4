@@ -23,13 +23,13 @@ class Job < ApplicationRecord
 #-------------------------------------------------------------------------------    
 #Private methods for any callbacks
     before_destroy :destroyable?
-    after_rollback :convert_inactive
+    after_rollback :make_inactive
     private
     def destroyable?
         @destroyable = self.shift_jobs.empty?
     end
     
-    def convert_inactive
+    def make_inactive
         self.update_attribute(:active, false) if !@destroyable.nil? && @destroyable == false
         @destroyable = nil
     end
