@@ -20,4 +20,5 @@ class User < ApplicationRecord
 
 #-------------------------------------------------------------------------------    
 #Privat methods for any callbacks
+
 end
