@@ -2,6 +2,11 @@ class Employee < ApplicationRecord
 # Callbacks
   before_save :reformat_phone
   before_validation :reformat_ssn
+  before_destroy :is_destroyable?
+  after_destroy :delete_assignment_and_shifts
+  after_rollback :delete_employee
+
+
   
   # Relationships
   has_one :user
@@ -68,7 +73,37 @@ class Employee < ApplicationRecord
      ssn = self.ssn.to_s      # change to string in case input as all numbers 
      ssn.gsub!(/[^0-9]/,"")   # strip all non-digits
      self.ssn = ssn           # reset self.ssn to new string
-   end
+   end 
+   
+   def destroyable?
+        @destroyable = self.shifts.past.empty?
+    end
+    
+    def make_inactive
+        self.update_attribute(:active, false) if !@destroyable.nil? && @destroyable == false
+        @destroyable = nil
+    end
+    
+    def delete_assignment_and_shifts
+      if @destroyable
+      @new_shifts = self.shifts.upcoming
+      @new_shifts.each {|x| x.destroy} unless @new_shifts.empty?
+      self.current_assignment.delete unless self.current_assignment.nil?
+      end
+      @destroyable = nil
+    end
+    def delete_employee
+      
+      if !@destroyable.nil? && @destroyable == false
+        @new_shifts = self.shifts.upcoming
+        @new_shifts.each {|x| x.destroy} unless @new_shifts.empty?
+        current_assignment = self.current_assignment    
+        unless current_assignment.nil?
+          current_assignment.update_attribute(:end_date, Date.current)
+        end
+      end
+      @destroyable = nil
+    end
 end
 
 
