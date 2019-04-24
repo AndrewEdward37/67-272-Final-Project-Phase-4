@@ -1,26 +1,29 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :store_flavors
-  resources :shift_jobs
-  resources :flavors
-  resources :jobs
-  resources :shifts
-  # get 'home/home'
-  # get 'home/about'
-  # get 'home/privacy'
-  # get 'home/contact'
+#-------------------------------------------------------------------------------    
+#Main resources
   resources :assignments
   resources :stores
   resources :employees
-  
-  
-  # Semi-static page routes
+  resources :flavors
+  resources :jobs
+  resources :shifts
+  resources :sessions
+#-------------------------------------------------------------------------------    
+#Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
-  
-  # Set the root url
+
+#-------------------------------------------------------------------------------    
+#Routes user needs
+  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  get 'signup' => 'users#new', :as => :signup
+  get 'login' => 'sessions#new', :as => :login
+  get 'logout' => 'sessions#destroy', :as => :logout
+
+#-------------------------------------------------------------------------------    
+#The root url
   root :to => 'home#home'  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
