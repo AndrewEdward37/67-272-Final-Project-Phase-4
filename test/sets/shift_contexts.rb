@@ -21,13 +21,13 @@ module Contexts
     end
 
     def remove_shifts_upcoming
-        @ted_shift1.delete
-        @ted_shift2.delete
-        @ted_shift3.delete
-        @marshal_shift1.delete
-        @marshal_shift2.delete
-        @barney_shift1.delete
-        @rachel_shift1.delete
+        @ted_shift1.destroy
+        @ted_shift2.destroy
+        @ted_shift3.destroy
+        @marshal_shift1.destroy
+        @marshal_shift2.destroy
+        @barney_shift1.destroy
+        @rachel_shift1.destroy
     end
 
     def create_shifts_past
@@ -41,13 +41,13 @@ module Contexts
     end
 
     def remove_shifts_past
-        @ted_past_shift1.delete
-        @ted_past_shift2.delete
-        @ted_past_shift3.delete
-        @marshal_past_shift1.delete
-        @marshal_past_shift2.delete
-        @barney_past_shift1.delete
-        @rachel_past_shift1.delete
+        @ted_past_shift1.destroy
+        @ted_past_shift2.destroy
+        @ted_past_shift3.destroy
+        @marshal_past_shift1.destroy
+        @marshal_past_shift2.destroy
+        @barney_past_shift1.destroy
+        @rachel_past_shift1.destroy
     end
 
   end

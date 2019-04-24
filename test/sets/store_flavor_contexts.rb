@@ -8,10 +8,10 @@ module Contexts
     end
     
     def remove_store_flavors
-        @chocolate_cmu.delete
-        @chocolate_cmuq.delete
-        @strawberry_cmu.delete
-        @cheesecake_cmuq.delete
+        @chocolate_cmu.destroy
+        @chocolate_cmuq.destroy
+        @strawberry_cmu.destroy
+        @cheesecake_cmuq.destroy
     end
   end
 end

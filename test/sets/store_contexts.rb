@@ -7,9 +7,9 @@ module Contexts
     end
     
     def remove_stores
-      @alsadd.delete
-      @cmuq.delete
-      @cmu.delete
+      @alsadd.destroy
+      @cmuq.destroy
+      @cmu.destroy
     end
   end
 end

@@ -10,11 +10,11 @@ module Contexts
     end
     
     def remove_assignments
-      @ted_assignment.delete
-      @marshal_assignment.delete
-      @barney_assignment.delete
-      @rachel_assignment.delete
-      @robin_assignment.delete
+      @ted_assignment.destroy
+      @marshal_assignment.destroy
+      @barney_assignment.destroy
+      @rachel_assignment.destroy
+      @robin_assignment.destroy
     end
   end
 end

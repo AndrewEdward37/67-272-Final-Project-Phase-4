@@ -11,12 +11,12 @@ module Contexts
       end
       
       def remove_employees
-        @ted.delete
-        @marshal.delete
-        @barney.delete
-        @rachel.delete
-        @robin.delete
-        @alex.delete
+        @ted.destroy
+        @marshal.destroy
+        @barney.destroy
+        @rachel.destroy
+        @robin.destroy
+        @alex.destroy
       end
     end
 end

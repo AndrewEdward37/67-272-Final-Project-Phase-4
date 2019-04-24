@@ -8,9 +8,9 @@ module Contexts
     end
     
     def remove_users
-        @ted_user.delete
-        @robin_user.delete
-        @alex_user.delete
+        @ted_user.destroy
+        @robin_user.destroy
+        @alex_user.destroy
     end
 
   end

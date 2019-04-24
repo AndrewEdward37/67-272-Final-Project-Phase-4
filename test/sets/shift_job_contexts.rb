@@ -9,10 +9,10 @@ module Contexts
     end
 
     def remove_shift_jobs
-        @ted_shift2_job1.delete
-        @ted_shift2_job2.delete
-        @marshal_shift1_job1.delete
-        @marshal_shift2_job4.delete
+        @ted_shift2_job1.destroy
+        @ted_shift2_job2.destroy
+        @marshal_shift1_job1.destroy
+        @marshal_shift2_job4.destroy
     end
   end
 end

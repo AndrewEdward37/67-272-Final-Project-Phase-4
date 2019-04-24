@@ -8,10 +8,10 @@ module Contexts
     end
 
     def remove_jobs
-      @cashier.delete
-      @making.delete
-      @mover.delete
-      @delivery.delete
+      @cashier.destroy
+      @making.destroy
+      @mover.destroy
+      @delivery.destroy
     end
   end
 end
