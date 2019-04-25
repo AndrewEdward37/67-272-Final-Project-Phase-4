@@ -1,6 +1,8 @@
 class Flavor < ApplicationRecord
 #-------------------------------------------------------------------------------    
 #Callbacks
+before_destroy :destroyable?
+after_rollback :make_inactive
 
 #-------------------------------------------------------------------------------    
 #Relationships
@@ -21,17 +23,17 @@ class Flavor < ApplicationRecord
 
 #-------------------------------------------------------------------------------    
 #Private methods for any callbacks
-    before_destroy :destroyable?
-    after_rollback :make_inactive
+    
     
     private
+    
     def destroyable?
-        @destroyable = false
+        self.errors.add(:base, "Cannot Delete flavors")
+        throw(:abort)
     end
     
     def make_inactive
-        self.update_attribute(:active, false) if !@destroyable.nil? && @destroyable == false
-        @destroyable = nil
+        self.update_attribute(:active, false)
     end
   
 end

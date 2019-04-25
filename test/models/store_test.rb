@@ -52,36 +52,49 @@ class StoreTest < ActiveSupport::TestCase
     # test one of each factory (not really required, but not a bad idea)
     should "show that all factories are properly created" do
       assert_equal "CMU", @cmu.name
-      assert @oakland.active
-      assert_equal false, @hazelwood.active
+      assert @cmuq.active
+      assert_equal false, @alsadd.active
     end
     
     # test stores must have unique names
     should "force stores to have unique names" do
-      repeat_store = FactoryBot.build(:store, name: "CMU")
-      assert_equal false, repeat_store.valid?
+      non_unique_store = FactoryBot.build(:store, name: "CMU")
+      assert_equal false, non_unique_store.valid?
     end
     
     # test the callback is working 'reformat_phone'
     should "shows that Oakland's phone is stripped of non-digits" do
-      assert_equal "4122688211", @oakland.phone
+      assert_equal "4312351231", @alsadd.phone
     end
     
     # test the scope 'alphabetical'
-    should "shows that there are three stores in in alphabetical order" do
-      assert_equal ["CMU", "Hazelwood", "Oakland"], Store.alphabetical.map{|s| s.name}
+    should "shows that there are stores in in alphabetical order" do
+      assert_equal ["Alsadd", "CMU", "CMUQ"], Store.alphabetical.map{|s| s.name}
     end
     
     # test the scope 'active'
-    should "shows that there are two active stores" do
+    should "shows the active stores" do
       assert_equal 2, Store.active.size
-      assert_equal ["CMU", "Oakland"], Store.active.alphabetical.map{|s| s.name}
+      assert_equal ["CMU", "CMUQ"], Store.active.alphabetical.map{|s| s.name}
     end
     
     # test the scope 'inactive'
-    should "shows that there is one inactive store" do
+    should "shows the inactive stores" do
       assert_equal 1, Store.inactive.size
-      assert_equal ["Hazelwood"], Store.inactive.alphabetical.map{|s| s.name}
+      assert_equal ["Alsadd"], Store.inactive.alphabetical.map{|s| s.name}
+    end
+    
+    should "correctly assess that stores are not destroyable" do
+      @alsadd.destroy
+      @cmu.destroy
+      assert_equal ["Alsadd", "CMU", "CMUQ"], Store.alphabetical.map{|s| s.name}
+
+    end
+    
+    should "make an undestroyed store inactive" do
+      @cmuq.destroy
+      @cmuq.reload
+      assert_equal false, @cmuq.active
     end
   
   end

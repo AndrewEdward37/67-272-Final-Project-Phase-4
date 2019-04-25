@@ -1,6 +1,9 @@
 class Store < ApplicationRecord
 # Callbacks
   before_save :reformat_phone
+  before_destroy :destroyable?
+  after_rollback :make_inactive
+  
   
   # Relationships
   has_many :assignments
@@ -30,8 +33,7 @@ class Store < ApplicationRecord
   # Misc Constants
   STATES_LIST = [['Ohio', 'OH'],['Pennsylvania', 'PA'],['West Virginia', 'WV']]
   
-  before_destroy :destroyable?
-  after_rollback :make_inactive
+  
   # Callback code
   # -----------------------------
   private
@@ -43,13 +45,13 @@ class Store < ApplicationRecord
   end
  
   def destroyable?
-        @destroyable = false
-    end
+        self.errors.add(:base, "Cannot Delete flavors")
+        throw(:abort)
+  end
     
-    def make_inactive
-        self.update_attribute(:active, false) if !@destroyable.nil? && @destroyable == false
-        @destroyable = nil
-    end
+  def make_inactive
+    self.update_attribute(:active, false)
+  end
 end
 
 

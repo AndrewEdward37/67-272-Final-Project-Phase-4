@@ -2,7 +2,7 @@ class Employee < ApplicationRecord
 # Callbacks
   before_save :reformat_phone
   before_validation :reformat_ssn
-  before_destroy :is_destroyable?
+  before_destroy :destroyable?
   after_destroy :delete_assignment_and_shifts
   after_rollback :delete_employee
 
@@ -13,6 +13,9 @@ class Employee < ApplicationRecord
   accepts_nested_attributes_for :user
   has_many :assignments
   has_many :stores, through: :assignments
+  has_one :user, dependent: :destroy
+  has_many :shifts, through: :assignments
+  accepts_nested_attributes_for :user, reject_if: lambda { |user| user[:email].blank? }, allow_destroy: true
   
   # Validations
   validates_presence_of :first_name, :last_name, :date_of_birth, :ssn, :role

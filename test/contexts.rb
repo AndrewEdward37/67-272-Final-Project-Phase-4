@@ -14,7 +14,7 @@ require './test/sets/user_contexts'
 #-------------------------------------------------------------------------------    
 #Include the required contexts
 module Contexts
-    include Contexts::StoreContexts
+    include Contexts::AssignmentContexts
     include Contexts::EmployeeContexts
     include Contexts::FlavorContexts
     include Contexts::JobContexts

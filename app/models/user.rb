@@ -34,7 +34,7 @@ class User < ApplicationRecord
 #Private methods for any callbacks
     private
     def active_employee
-        is_active_in_system(:employee)
+        self.employee.active
     end
     
     #from lectures

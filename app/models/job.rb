@@ -24,9 +24,13 @@ class Job < ApplicationRecord
 #Private methods for any callbacks
     before_destroy :destroyable?
     after_rollback :make_inactive
+    
     private
     def destroyable?
-        @destroyable = self.shift_jobs.empty?
+        if self.shift_jobs.empty?
+            self.errors.add(:base, "Cannot Delete flavors")
+            throw(:abort)
+        end
     end
     
     def make_inactive
