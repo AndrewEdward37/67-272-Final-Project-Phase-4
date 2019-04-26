@@ -15,7 +15,7 @@ class Employee < ApplicationRecord
   has_many :stores, through: :assignments
   has_one :user, dependent: :destroy
   has_many :shifts, through: :assignments
-  accepts_nested_attributes_for :user, reject_if: lambda { |user| user[:email].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :user
   
   # Validations
   validates_presence_of :first_name, :last_name, :date_of_birth, :ssn, :role
@@ -46,8 +46,6 @@ class Employee < ApplicationRecord
   
   def current_assignment
     curr_assignment = self.assignments.select{|a| a.end_date.nil?}
-    # alternative method for finding current assignment is to use scope 'current' in assignments:
-    # curr_assignment = self.assignments.current    # will also return an array of current assignments
     return nil if curr_assignment.empty?
     curr_assignment.first   # return as a single object, not an array
   end
@@ -79,7 +77,7 @@ class Employee < ApplicationRecord
      self.ssn = ssn           # reset self.ssn to new string
    end 
    
-   def destroyable?
+    def destroyable?
         @destroyable = self.shifts.past.empty?
     end
     

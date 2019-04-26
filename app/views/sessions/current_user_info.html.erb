@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>YOUR INFORMATION</h1>
+<table class = "striped">
+  <tbody>
+    <tr>
+      <td>First name:</td>
+      <td><%= current_user.employee.first_name %></td>
+    </tr>
+    <tr>
+      <td>Last name:</td>
+      <td><%= current_user.employee.last_name %></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><%= current_user.email %></td>
+    </tr>
+    <tr>
+      <td>SSN:</td>
+      <td><%= current_user.employee.ssn %></td>
+    </tr>
+    <tr>
+      <td>Date of birth:</td>
+      <td><%= current_user.employee.date_of_birth %></td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td><%= current_user.employee.phone %></td>
+    </tr>
+    <tr>
+      <td>Role:</td>
+      <td><%= current_user.employee.role %></td>
+    </tr>
+    <tr>
+      <td>Active:</td>
+      <td><%= current_user.employee.active %></td>
+    </tr>
+  </tbody>
+</table>

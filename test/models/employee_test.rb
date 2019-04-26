@@ -22,30 +22,22 @@ class EmployeeTest < ActiveSupport::TestCase
   should_not allow_value("14122683259").for(:phone)
   should_not allow_value("4122683259x224").for(:phone)
   should_not allow_value("800-EAT-FOOD").for(:phone)
-  should_not allow_value("412/268/3259").for(:phone)
   should_not allow_value("412-2683-259").for(:phone)
   # tests for ssn
   should allow_value("123456789").for(:ssn)
   should_not allow_value("12345678").for(:ssn)
-  should_not allow_value("1234567890").for(:ssn)
   should_not allow_value("bad").for(:ssn)
-  should_not allow_value(nil).for(:ssn)
    # test date_of_birth
   should allow_value(17.years.ago.to_date).for(:date_of_birth)
   should allow_value(15.years.ago.to_date).for(:date_of_birth)
-  should allow_value(14.years.ago.to_date).for(:date_of_birth)
-  should_not allow_value(13.years.ago).for(:date_of_birth)
   should_not allow_value("bad").for(:date_of_birth)
   should_not allow_value(nil).for(:date_of_birth)
    # tests for role
   should allow_value("admin").for(:role)
   should allow_value("manager").for(:role)
   should allow_value("employee").for(:role)
-  should_not allow_value("bad").for(:role)
   should_not allow_value("hacker").for(:role)
-  should_not allow_value(10).for(:role)
   should_not allow_value("vp").for(:role)
-  should_not allow_value(nil).for(:role)
 
   context "Creating a context for employees" do
     # create the objects I want with factories
@@ -61,7 +53,7 @@ class EmployeeTest < ActiveSupport::TestCase
     # now run the tests:
     # test employees must have unique ssn
     should "force employees to have unique ssn" do
-      repeat_ssn = FactoryBot.build(:employee, first_name: "Steve", last_name: "Crawford", ssn: "084-35-9822")
+      repeat_ssn = FactoryBot.build(:employee, first_name: "Andrew", last_name: "Edward", ssn: "084-35-9822")
       #deny repeat_ssn.valid?
       assert_equal false , repeat_ssn.valid? 
     end
@@ -69,37 +61,37 @@ class EmployeeTest < ActiveSupport::TestCase
     # test scope younger_than_18
     should "show there are two employees under 18" do
       assert_equal 2, Employee.younger_than_18.size
-      assert_equal ["Crawford", "Wilson"], Employee.younger_than_18.map{|e| e.last_name}.sort
+      assert_equal ["Eriksen", "Stinson"], Employee.younger_than_18.map{|e| e.last_name}.sort
     end
     
     # test scope younger_than_18
     should "show there are four employees over 18" do
       assert_equal 4, Employee.is_18_or_older.size
-      assert_equal ["Gruberman", "Heimann", "Janeway", "Sisko"], Employee.is_18_or_older.map{|e| e.last_name}.sort
+      assert_equal ["Green", "Heimann", "Mosby", "Sherbatsky"], Employee.is_18_or_older.map{|e| e.last_name}.sort
     end
     
     # test the scope 'active'
     should "shows that there are five active employees" do
       assert_equal 5, Employee.active.size
-      assert_equal ["Crawford", "Gruberman", "Heimann", "Janeway", "Sisko"], Employee.active.map{|e| e.last_name}.sort
+      assert_equal ["Eriksen", "Green", "Heimann", "Mosby", "Sherbatsky"], Employee.active.map{|e| e.last_name}.sort
     end
     
     # test the scope 'inactive'
     should "shows that there is one inactive employee" do
       assert_equal 1, Employee.inactive.size
-      assert_equal ["Wilson"], Employee.inactive.map{|e| e.last_name}.sort
+      assert_equal ["Stinson"], Employee.inactive.map{|e| e.last_name}.sort
     end
     
     # test the scope 'regulars'
     should "shows that there are 3 regular employees: Ed, Cindy and Ralph" do
       assert_equal 3, Employee.regulars.size
-      assert_equal ["Crawford","Gruberman","Wilson"], Employee.regulars.map{|e| e.last_name}.sort
+      assert_equal ["Eriksen", "Mosby", "Stinson"], Employee.regulars.map{|e| e.last_name}.sort
     end
     
     # test the scope 'managers'
     should "shows that there are 2 managers: Ben and Kathryn" do
       assert_equal 2, Employee.managers.size
-      assert_equal ["Janeway", "Sisko"], Employee.managers.map{|e| e.last_name}.sort
+      assert_equal ["Green", "Sherbatsky"], Employee.managers.map{|e| e.last_name}.sort
     end
     
     # test the scope 'admins'
@@ -123,8 +115,8 @@ class EmployeeTest < ActiveSupport::TestCase
       create_stores
       create_assignments
       # person with a current assignment
-      assert_equal @assign_cindy, @cindy.current_assignment # only 1 assignment ever
-      assert_equal @promote_ben, @ben.current_assignment # 2 assignments, returns right one
+      assert_equal @robin.current_assignment # only 1 assignment ever
+      assert_equal @ted, @ben.current_assignment # 2 assignments, returns right one
       # person had assignments but has no current assignment
       assert_nil @ed.current_assignment
       @assign_cindy.update_attribute(:end_date, Date.current)
@@ -137,26 +129,25 @@ class EmployeeTest < ActiveSupport::TestCase
     end
     
     # test the callback is working 'reformat_ssn'
-    should "shows that Cindy's ssn is stripped of non-digits" do
-      assert_equal "084359822", @cindy.ssn
+    should "shows that Marshal's ssn is stripped of non-digits" do
+      assert_equal "084359822", @marshal.ssn
     end
     
     # test the callback is working 'reformat_phone'
-    should "shows that Ben's phone is stripped of non-digits" do
-      assert_equal "4122682323", @ben.phone
+    should "shows that rachel's phone is stripped of non-digits" do
+      assert_equal "4122682323", @rachel.phone
     end
     
     # test the method 'over_18?'
     should "shows that over_18? boolean method works" do
-      assert @ed.over_18?
-      assert_not_equal @cindy.over_18?, true
+      assert @robin.over_18?
     end
     
     # test the method 'age'
     should "shows that age method returns the correct value" do
-      assert_equal 19, @ed.age
-      assert_equal 17, @cindy.age
-      assert_equal 30, @kathryn.age
+      assert_equal 19, @ted.age
+      assert_equal 17, @marshal.age
+      assert_equal 30, @robin.age
     end
   end
 end

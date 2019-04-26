@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new', :as => :signup
   get 'login' => 'sessions#new', :as => :login
   get 'logout' => 'sessions#destroy', :as => :logout
+  get 'session/current_user_info' => 'sessions#current_user_info', :as => :view_current_user
 
 #-------------------------------------------------------------------------------    
 #The root url

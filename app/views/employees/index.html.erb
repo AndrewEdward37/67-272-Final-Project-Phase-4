@@ -6,6 +6,8 @@
     <ul class="tabs">
       <li class="tab col s3"><a class="active" href="#test1">Active Employees</a></li>
       <li class="tab col s3"><a href="#test2">Inactive Employees</a></li>
+      <li class="tab col s3"><a href="#test4">Managers</a></li>
+      <li class="tab col s3"><a href="#test5">Regular Employees</a></li>
     </ul>
   </div>
     
@@ -64,7 +66,65 @@
         </tbody>
       </table>
     </div>
-  </div>
 <%end%>
+  <div id="test4" class="col s12">
+    <% if (!@manager_employees.nil?) then %>
+    <table class= "striped">
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Role</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% 
+        @manager_employees.each do |employee| %>
+          <tr>
+            <td><%= employee.first_name %></td>
+            <td><%= employee.last_name %></td>
+            <td><%= employee.role %></td>
+            <td><%= link_to 'Show', employee_path(employee), :class=> "waves-effect waves-light btn light-green" %></td>
+            <td><%= link_to 'Edit', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %></td>
+            <td><%= link_to 'Destroy', employee, confirm: 'Are you sure?', data: { confirm: 'Are you sure?' }, method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%end%>
+  </div>
+
+  <div id="test5" class="col s12">
+    <% if (!@regular_employees.nil?) then %>
+    <table class= "striped">
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Role</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <%@regular_employees.each do |employee| %>
+          <tr>
+            <td><%= employee.first_name %></td>
+            <td><%= employee.last_name %></td>
+            <td><%= employee.role %></td>
+            <td><%= link_to 'Show', employee_path(employee), :class=> "waves-effect waves-light btn light-green" %></td>
+            <td><%= link_to 'Edit', edit_employee_path(employee), :class=> "waves-effect waves-light btn light-blue" %></td>
+            <td><%= link_to 'Destroy', employee, confirm: 'Are you sure?', data: { confirm: 'Are you sure?' }, method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%end%>
+  </div>
+
+</div>
+
 <br>
 <%= link_to 'New Employee', new_employee_path, :class=> "waves-effect waves-light btn green" %>

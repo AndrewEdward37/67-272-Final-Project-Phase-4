@@ -11,41 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name %>
   </div>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :last_name %>
     <%= form.text_field :last_name %>
   </div>
   
+  <div class="input-field">
   <%= form.fields_for :user do |field|%>
     <%= field.label "Email" %>
     <%= field.text_field :email %>
-    
+  </div>
+  <div class="input-field">
     <%= field.label "Password" %>
     <%= field.password_field :password %>
+  </div>
   <% end %>
   
-  <div class="field">
+  <div class="input-field">
     <%= form.label :ssn %>
     <%= form.text_field :ssn %>
   </div>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :date_of_birth %>
-    <%= form.text_field :date_of_birth, prompt: "Start Date", class: "datepicker", :value => (form.object.date_of_birth.strftime('%B %d, %Y') if form.object.date_of_birth != nil)%>
-    
+    <%= form.date_select :date_of_birth , :order => [:year, :month, :day], :start_year => 1980, :end_year => Time.now.year - 18 %>
   </div>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :phone %>
     <%= form.text_field :phone %>
   </div>
  
-  <div class="field">
+  <div class="input-field">
     <%= form.label :role %>
     <%= form.text_field :role %>
   </div>
@@ -54,8 +56,7 @@
     <%= form.label :active %>
     <%= form.select :active, [['Yes', true], ['No',false]] %>
   </div>
-
-
+  
   <div class="actions">
     <%= form.submit :class=>"waves-effect waves-light btn green" %>
   </div>
