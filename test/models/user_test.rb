@@ -33,10 +33,6 @@ class UserTest < ActiveSupport::TestCase
       @x = FactoryBot.build(:user, employee: @x)
       assert false, @x.valid?
       
-      # test an inactive employee can't be a user
-      #@inactive = FactoryBot.build(:user, employee: @barney)
-      #deny @inactive.valid?
-      
     end
 
     # test role? method

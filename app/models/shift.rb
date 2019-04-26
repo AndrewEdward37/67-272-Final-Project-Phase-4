@@ -58,10 +58,6 @@ class Shift < ApplicationRecord
         end
     end
     
-    def delete_check
-        
-    end
-    
     def set_shift_time_if_new
         self.end_time = self.start_time + (3*60*60)
     end

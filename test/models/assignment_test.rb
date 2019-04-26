@@ -120,45 +120,5 @@ class AssignmentTest < ActiveSupport::TestCase
       @promote_ted.destroy
     end
     
-    #should "allow an assignment with no past shifts to be destroyed" do 
-    #  create_shifts_upcoming
-    #  assert @marshal_robin.shifts.past.empty?
-    #  assert @marshal_robin.destroy
-    #  remove_shifts_upcoming
-    #end
-
-    # should "allow a destroyable assignment has upcoming shifts removed" do 
-    #   create_shifts_upcoming
-    #   deny Shift.for_employee(@marshal.id).empty?
-    #   assert @marshal_assignment.destroy
-    #   assert Shift.for_employee(@marshal.id).empty?
-    #   remove_shifts_upcoming
-       
-    # end
-
-    # should "not allow an assignment with past shifts to be destroyed" do 
-    #   create_past_shifts
-    #   deny @assign_ed_2.shifts.past.empty?
-    #   deny @assign_ed_2.destroy
-    #   remove_past_shifts
-    # end
-
-    # should "remove upcoming shifts from an assignment that was attempted to be destroyed" do 
-    #   create_shifts
-    #   deny Shift.for_employee(@kathryn.id).upcoming.empty?
-    #   deny @assign_kathryn.destroy
-    #   assert Shift.for_employee(@kathryn.id).upcoming.empty?
-    #   remove_shifts  
-    # end
-
-    # should "remove upcoming shifts from an assignment that was ended" do 
-    #   create_shifts
-    #   deny @assign_kathryn.shifts.upcoming.empty?
-    #   @assign_kathryn.end_date = Date.current
-    #   @assign_kathryn.save
-    #   @assign_kathryn.reload
-    #   assert @assign_kathryn.shifts.upcoming.empty?
-    #   remove_shifts
-    # end
   end
 end
