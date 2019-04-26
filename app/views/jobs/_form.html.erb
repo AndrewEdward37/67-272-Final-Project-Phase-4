@@ -11,27 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :id %>
-    <%= form.number_field :id %>
-  </div>
-
-  <div class="field">
+  <div class="input-field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
 
-  <div class="field">
+  <div class="input-field">
     <%= form.label :active %>
-    <%= form.check_box :active %>
+    <%= form.select :active, [['Yes', true], ['No',false]] %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class=>"waves-effect waves-light btn green" %>
+
   </div>
 <% end %>

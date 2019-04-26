@@ -59,6 +59,7 @@ class Employee < ApplicationRecord
   def age
     (Time.now.to_s(:number).to_i - date_of_birth.to_time.to_s(:number).to_i)/10e9.to_i
   end
+
   
   # Misc Constants
   ROLES_LIST = [['Employee', 'employee'],['Manager', 'manager'],['Administrator', 'admin']]

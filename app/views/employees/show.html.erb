@@ -1,39 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @employee.first_name %>
-</p>
+<table class = "striped">
+  <tbody>
+    <tr>
+      <td>First name:</td>
+      <td><%= @employee.first_name %></td>
+    </tr>
+    <tr>
+      <td>Last name:</td>
+      <td><%= @employee.last_name %></td>
+    </tr>
+    <tr>
+      <td>SSN:</td>
+      <td><%= @employee.ssn %></td>
+    </tr>
+    <tr>
+      <td>Date of birth:</td>
+      <td><%= @employee.date_of_birth %></td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td><%= @employee.phone %></td>
+    </tr>
+    <tr>
+      <td>Role:</td>
+      <td><%= @employee.role %></td>
+    </tr>
+    <tr>
+      <td>Active:</td>
+      <td><%= @employee.active %></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Edit', edit_employee_path(@employee), :class => "btn-large waves-effect waves-light black-text yellow accent-3" %>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @employee.last_name %>
-</p>
-
-<p>
-  <strong>Ssn:</strong>
-  <%= @employee.ssn %>
-</p>
-
-<p>
-  <strong>Date of birth:</strong>
-  <%= @employee.date_of_birth %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @employee.phone %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @employee.role %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @employee.active %>
-</p>
-
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Back', employees_path, :class => "btn-large waves-effect waves-light blue" %>

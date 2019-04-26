@@ -1,34 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id:</strong>
-  <%= @shift.id %>
-</p>
+<table class = "striped">
+  <tbody>
+    <tr>
+      <td>Id:</td>
+      <td><%= @shifts.id %></td>
+    </tr>
+    <tr>
+      <td>Assignment:</td>
+      <td><%= @shifts.assignment_id %></td>
+    </tr>
+    <tr>
+      <td>Date:</td>
+      <td><%= @shifts.date %></td>
+    </tr>
+    <tr>
+      <td>Start time:</td>
+      <td><%= @shifts.start_time %></td>
+    </tr>
+    <tr>
+      <td>End time:</td>
+      <td><%= @shifts.end_time %></td>
+    </tr>
+    <tr>
+      <td>Note:</td>
+      <td><%= @shifts.note %></td>
+    </tr>
+    
+  </tbody>
+</table>
+<br>
 
-<p>
-  <strong>Assignment:</strong>
-  <%= @shift.assignment_id %>
-</p>
+<%= link_to 'Edit', edit_shift_path(@shift), :class => "btn-large waves-effect waves-light black-text yellow accent-3" %>
 
-<p>
-  <strong>Date:</strong>
-  <%= @shift.date %>
-</p>
-
-<p>
-  <strong>Start time:</strong>
-  <%= @shift.start_time %>
-</p>
-
-<p>
-  <strong>End time:</strong>
-  <%= @shift.end_time %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @shift.notes %>
-</p>
-
-<%= link_to 'Edit', edit_shift_path(@shift) %> |
-<%= link_to 'Back', shifts_path %>
+<%= link_to 'Back', shifts_path, :class => "btn-large waves-effect waves-light blue" %>

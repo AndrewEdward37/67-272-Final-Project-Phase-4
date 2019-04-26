@@ -1,31 +1,63 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Flavors</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @flavors.each do |flavor| %>
-      <tr>
-        <td><%= flavor.id %></td>
-        <td><%= flavor.name %></td>
-        <td><%= flavor.active %></td>
-        <td><%= link_to 'Show', flavor %></td>
-        <td><%= link_to 'Edit', edit_flavor_path(flavor) %></td>
-        <td><%= link_to 'Destroy', flavor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s3"><a class="active" href="#test1">Active flavors</a></li>
+      <li class="tab col s3"><a href="#test2">Inactive flavors</a></li>
+    </ul>
+  </div>
+    
+  <div id="test1" class="col s12">
+    <% if (!@flavors.active.nil?) then %>
+    <table class= "striped">
+      <thead>
+        <tr>
+          <th>Flavor</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% 
+        @flavors.active.each do |flavor| %>
+          <tr>
+            <td><%= flavor.name %></td>
+            <td><%= link_to 'Show', flavor_path(flavor), :class=> "waves-effect waves-light btn light-green" %></td>
+            <td><%= link_to 'Edit', edit_flavor_path(flavor), :class=> "waves-effect waves-light btn light-blue" %></td>
+            <td><%= link_to 'Destroy', flavor, confirm: 'Are you sure?', data: { confirm: 'Are you sure?' }, method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%end%>
+  </div>
+    <div id="test2" class="col s12">
+      <% if (!@flavors.inactive.nil?) then %>
+      <table class = "striped">
+        <thead>
+          <tr>
+            <th>Flavor</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% 
+          @flavors.inactive.each do |flavor| %>
+            <tr>
+              <td><%= flavor.name %></td>
+              <td><%= link_to 'Show', flavor_path(flavor), :class=> "waves-effect waves-light btn light-green" %></td>
+              <td><%= link_to 'Edit', edit_flavor_path(flavor), :class=> "waves-effect waves-light btn light-blue" %></td>
+              <td><%= link_to 'Destroy', flavor, confirm: 'Are you sure?', data: { confirm: 'Are you sure?' }, method: :delete, :class=> "waves-effect waves-light btn red" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%end%>
+</div>
 
 <br>
-
-<%= link_to 'New Flavor', new_flavor_path %>
+<%= link_to 'New flavor', new_flavor_path, :class=> "waves-effect waves-light btn green" %>

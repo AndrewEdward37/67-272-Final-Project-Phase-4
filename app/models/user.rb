@@ -5,6 +5,7 @@ class User < ApplicationRecord
     
 #-------------------------------------------------------------------------------    
 #Callbacks
+    before_create :is_active
 
 #-------------------------------------------------------------------------------    
 #Relationships
@@ -13,7 +14,8 @@ class User < ApplicationRecord
 #-------------------------------------------------------------------------------    
 #Validations
     validates_presence_of :employee_id, :email, :password_digest
-    validate :active_employee
+    #validate :is_active
+    
     #found on stackoverflow
     validates_uniqueness_of :email, case_sensitive: false
     validates_format_of :email, :with => /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i
@@ -29,16 +31,23 @@ class User < ApplicationRecord
         return false if self.employee.role.nil?
         self.employee.role.downcase.to_sym == authorized_role
     end
+    
+    def is_active
+        @act_employee = self.employee.active 
+    end
+    
 
 #-------------------------------------------------------------------------------    
 #Private methods for any callbacks
     private
-    def active_employee
-        self.employee.active
-    end
+    #def active_employee
+    #    self.employee.active
+    #end
     
     #from lectures
     def self.authenticate(email,password)
         find_by_email(email).try(:authenticate, password)
     end
+    
+    
 end

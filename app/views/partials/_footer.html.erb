@@ -1,15 +1,25 @@
 
-<footer>
-
-	<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-  <%= link_to 'About the Creamery', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Privacy Policy', privacy_path %>
-	<br /><br />
-	
-	<div id="copy">
-		Webmaster: <%= mail_to("preethag@cmu.edu", "PREETHA GOPINATH", encode: "javascript") %> 
-		&nbsp;&nbsp;&copy 2016
+<footer class = "page-footer">
+	<div class="row valign-wrapper">
+		<div class = "col s3">
+	    	
+	    </div>
+		<div class="col s6 center">
+	        <ul class="center">
+	        	<%= link_to 'Home', home_path, :class => 'white-text text-accent-3' %>&nbsp;&nbsp;&nbsp;&nbsp;
+	  			<%= link_to 'About the Creamery', about_path, :class => 'white-text text-accent-3' %>&nbsp;&nbsp;&nbsp;&nbsp;
+				<%= link_to 'Contact Us', contact_path, :class => 'white-text text-accent-3' %>&nbsp;&nbsp;&nbsp;&nbsp;
+				<%= link_to 'Privacy Policy', privacy_path, :class => 'white-text text-accent-3' %>
+	    	</ul>
+	    </div>
+    	<div class="col s3 valign center">
+          <% if current_user!=nil %>
+          <%= link_to "click here to logout", logout_path, :class => 'btn white red-text text-accent-3' %>
+          <% end %>
+    	</div>
+    </div>
+	<div class="footer-copyright">
+		Webmaster: <%= mail_to("aedward@andrew.cmu.edu", "ANDREW EDWARD", encode: "javascript", :class => 'white-text text-accent-3') %> 
+		&nbsp;&nbsp;&copy 2019
 	</div>
-
 </footer>

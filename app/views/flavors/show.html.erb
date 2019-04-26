@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id:</strong>
-  <%= @flavor.id %>
-</p>
+<table class = "striped">
+  <tbody>
+    <tr>
+      <td>Name:</td>
+      <td><%= @flavor.name %></td>
+    </tr>
+    <tr>
+      <td>Active:</td>
+      <td><%= @flavor.active%></td>
+    </tr>
+    
+  </tbody>
+</table>
+<br>
 
-<p>
-  <strong>Name:</strong>
-  <%= @flavor.name %>
-</p>
+<%= link_to 'Edit', edit_flavor_path(@flavor), :class => "btn-large waves-effect waves-light black-text yellow accent-3" %>
 
-<p>
-  <strong>Active:</strong>
-  <%= @flavor.active %>
-</p>
-
-<%= link_to 'Edit', edit_flavor_path(@flavor) %> |
-<%= link_to 'Back', flavors_path %>
+<%= link_to 'Back', flavors_path, :class => "btn-large waves-effect waves-light blue" %>

@@ -58,6 +58,12 @@ FactoryBot.define do
     end
     
     factory :user do
-    
+        sequence :email do |n|
+      "usermail#{n}@example.com"
+    end
+    association :employee
+    password_digest {"$2a$10$o6xZS3B73OZ8GqRoM6uGPOEzZL0pOh6Yhk3qIMp2Qr2Fap.bshK5S"}
+        # password "secret"
+        # password_confirmation "secret"
     end
 end

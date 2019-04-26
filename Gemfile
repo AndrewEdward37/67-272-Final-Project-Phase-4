@@ -19,6 +19,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
+
+gem 'jquery-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -33,14 +36,12 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'time_date_helpers'
 gem 'validates_timeliness'
-gem 'cancancan'
 gem 'simple_form'
 gem 'will_paginate'
-gem 'foundation-rails', '5.5.3.2'
 gem 'font-awesome-sass-rails', '3.0.2.2'
 gem 'geocoder', '1.3.2'
 gem 'jquery-rails'
-
+gem 'jquery-turbolinks'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

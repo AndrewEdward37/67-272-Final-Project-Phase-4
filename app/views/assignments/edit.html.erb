@@ -1,6 +1,7 @@
 <h1>Editing Assignment</h1>
 
 <%= render 'form', assignment: @assignment %>
+<br>
+<%= link_to 'Show', @assignment, :class => "btn-large waves-effect waves-light light-green" %>
 
-<%= link_to 'Show', @assignment %> |
-<%= link_to 'Back', assignments_path %>
+<%= link_to 'Back', assignments_path, :class => "btn-large waves-effect waves-light blue" %>

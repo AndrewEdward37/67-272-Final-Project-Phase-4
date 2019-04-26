@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Id:</strong>
-  <%= @job.id %>
-</p>
+<table class = "striped">
+  <tbody>
+    <tr>
+      <td>Name:</td>
+      <td><%= @job.name %></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><%= @job.description %></td>
+    </tr>
+    <tr>
+      <td>Active:</td>
+      <td><%= @job.active%></td>
+    </tr>
+    
+  </tbody>
+</table>
+<br>
 
-<p>
-  <strong>Name:</strong>
-  <%= @job.name %>
-</p>
+<%= link_to 'Edit', edit_job_path(@job), :class => "btn-large waves-effect waves-light black-text yellow accent-3" %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @job.description %>
-</p>
-
-<p>
-  <strong>Active:</strong>
-  <%= @job.active %>
-</p>
-
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
+<%= link_to 'Back', jobs_path, :class => "btn-large waves-effect waves-light blue" %>

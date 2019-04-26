@@ -1,0 +1,28 @@
+
+
+<h3>LOG IN</h3>
+<div class="row">
+    <div class="col s3">
+    </div>
+    
+    <div class="col s6">
+        <%= form_tag sessions_path do %>
+        <div class = "row">
+            <%= label_tag :email %>
+            <%= text_field_tag :email, params[:email] %>
+        </div>
+
+        <div class = "row">
+            <%= label_tag :password %>
+            <%= password_field_tag :password %>
+        </div>
+          
+        <div class = "row">
+            <%= submit_tag "Log In", :class => 'btn red accent-3 white-text text-accent-3' %>
+        </div>
+    </div>
+    <div class = "col s3">
+        
+    </div>
+    <% end %>
+</div>

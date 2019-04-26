@@ -1,33 +1,145 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Phase4starter</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Ice-cream :: <%= controller.controller_name.capitalize %> - <%= controller.action_name.capitalize %></title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => false %>
+  <%= csrf_meta_tags %>
+  
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-  </head>
+<body>
 
-  <body>
-    <div id="col s12 center">
-      <%= link_to image_tag('creamery_title.png'), home_path %>
-    </div>
-    <%= render :partial => "partials/nav" %>
+    <!-- Dropdown Structure <--></-->
+    <ul id="dropdown1" class="dropdown-content">
+      <li><%= link_to "Add an Employee", new_employee_path, :class => 'red-text text-accent-3'%></li>
+      <li class="divider"></li>
+      <li><%= link_to "List Employees", employees_path, :class => 'red-text text-accent-3'%></li>
+      <li class="divider"></li>
+    </ul>
+    <ul id="dropdown2" class="dropdown-content">
+      <li><%= link_to "Add a Store", new_store_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+      <li><%= link_to "List Active Stores", stores_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+    </ul>
+    <ul id="dropdown3" class="dropdown-content">
+      <li><%= link_to "Add an Assignment", new_assignment_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+      <li><%= link_to "List Assignments", assignments_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+    </ul>
     
+    <ul id="dropdown4" class="dropdown-content">
+      <li><%= link_to "Add a shift", new_shift_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+      <li><%= link_to "List Shifts", shifts_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+    </ul>
+    
+    <ul id="dropdown5" class="dropdown-content">
+      <li><%= link_to "Add a job", new_job_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+      <li><%= link_to "List Jobs", jobs_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+    </ul>
+    
+    <ul id="dropdown6" class="dropdown-content">
+      <li><%= link_to "Add a flavor", new_flavor_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+      <li><%= link_to "List flavors", flavors_path, :class => 'red-text text-accent-3' %></li>
+      <li class="divider"></li>
+    </ul>
+    
+    <% if current_user==nil%>
+    <nav>
+      <div class="nav-wrapper">
+        &nbsp&nbsp
+        <a href="/" class="brand-logo"><i class="material-icons">free_breakfast</i>A&M Creamery</a>
+        <ul class="right">
+          <li><%= link_to "List Active Stores", stores_path, :class => 'button red-text text-accent-3' %></li>
+        </ul>
+      </div>
+    </nav>
+    <% end %>
+    
+    <% if current_user!=nil && (current_user.role? :employee) %>
+    <nav>
+      <div class="nav-wrapper">
+        &nbsp&nbsp
+        <a href="/" class="brand-logo"><i class="material-icons">free_breakfast</i>A&M Creamery system</a>
+        <ul class="right">
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-button" href="/employees" data-activates ="dropdown1">Employees<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+
+        </ul>
+      </div>
+    </nav>
+    <% end %>
+    
+    <% if current_user!=nil && (current_user.role? :manager) %>
+    <nav>
+      <div class="nav-wrapper">
+        &nbsp&nbsp
+        <a href="/" class="brand-logo"><i class="material-icons">free_breakfast</i>A&M Creamery system</a>
+        <ul class="right">
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-button" href="/employees" data-activates ="dropdown1">Employees<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/stores" data-activates ="dropdown2">Stores<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/assignments" data-activates ="dropdown3">Assignments<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/shifts" data-activates ="dropdown4">Shifts<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+      </div>
+    </nav>
+    <% end %>
+    
+    <% if current_user!=nil && (current_user.role? :admin) %>
+    <nav>
+      <div class="nav-wrapper">
+        &nbsp&nbsp
+        <a href="/" class="brand-logo"><i class="material-icons">free_breakfast</i>A&M Creamery system</a>
+        <ul class="right">
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-button" href="/employees" data-activates ="dropdown1">Employees<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/stores" data-activates ="dropdown2">Stores<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/assignments" data-activates ="dropdown3">Assignments<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/shifts" data-activates ="dropdown4">Shifts<i 
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/jobs" data-activates ="dropdown5">Jobs<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-button" href="/flavors" data-activates ="dropdown6">Flavors<i
+          class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+      </div>
+    </nav>
+    <% end %>
+  
     <div class="row">
-      <div class="col s12 center">
-        <%= render :partial => "partials/flash" %>
-        <%= yield %>
+      
+      <div class="col s2 center">
+      </div>
+      
+      <div class="col s8 center">
+       <%= yield %>
+      </div>
+      
+      <div class="col s2 center">
       </div>
     </div>
-    <footer>
-      <div class="col s12 center">
-        <%= render partial: 'partials/footer' %>
-      </div>
-    </footer> 
-    <%= javascript_include_tag "application" %>
+    
+    <%= render partial: 'partials/footer' %>
+     
   </body>
-  </body>
+  <%= javascript_include_tag "application" %>
+  <% flash.each do |message_type, message| %>
+    <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+  <% end %>
 </html>
+
